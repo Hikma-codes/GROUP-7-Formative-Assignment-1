@@ -5,7 +5,6 @@ import 'screens/schedule_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -42,11 +41,18 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MainPage(),
+      // ------------------------ ADDED LOGIN/SIGNUP ------------------------
+      initialRoute: '/login', // Start app at login
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const SignupScreen(),
+        '/main': (context) => const MainPage(),
+      },
     );
   }
 }
 
+// ------------------------ ORIGINAL MAIN PAGE ------------------------
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -58,10 +64,10 @@ class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
 
   List<Widget> get _screens => [
-    DashboardScreen(),
-    AssignmentsScreen(),
-    ScheduleScreen(),
-  ];
+        DashboardScreen(),
+        AssignmentsScreen(),
+        ScheduleScreen(),
+      ];
 
   @override
   Widget build(BuildContext context) {
